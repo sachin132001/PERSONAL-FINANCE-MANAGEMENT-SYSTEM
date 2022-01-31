@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Category
+{% endblock title %}
+
+{% block body %}
+
+<div class="container">
+   <div class="row">
+       <div class="col md-12">
+
+           <div class="jumbotron p-3">
+
+               <h2><b>Category</b>  <button type="button"  class="btn btn-primary float-right"
+               data-toggle="modal" data-target="#mymodal">Select Category</button> </h2>
+
+
+               
+
+               <table class="table table-hover table-dark">
+
+                   <tr>
+
+                       <th>CategoryID</th>
+                       <th>Category Name</th>
+                       <th>Category Description</th>
+                       <th>Category Type</th>
+                       <th>Parent Category</th>
+                       <th>Edit</th>
+                       <th>Delete</th>
+                   </tr>
+
+
+                  {% for post in query %}
+                   <tr>
+                       <th scope="row">{{post.catid}}</th>
+                       <td>{{post.catname}}</th>
+                       <td>{{post.catdesc}}</td>
+                       <td>{{post.cattype}}</td>
+                       <td>{{post.pcat}}</td>
+                       
+
+                       <td><a href="/update/{{post.catid}}"> <button class="btn btn-warning ">Edit</button></a></td>
+                       <td><a href="/cdelete/{{post.catid}}"><button class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete </button> </a> </td>
+                   </tr>
+            
+
+                 
+
+
+                  {% endfor %}   
+
+
+               </table>
+
+
+           </div>
+
+
+
+                 
+
+
+<div id="mymodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+     <div class="modal-content">
+        <div class="modal-header">
+
+           <h4 class="modal-title">Select Category</h4>
+        </div>
+        <div class="modal-body">
+
+           <form action="{{url_for('select')}}" method="POST">
+
+
+              <div class="form-group">
+
+               
+
+                 <label>Category Name:</label>
+                 <input type="hidden"  id="userid" name="userid" value="{{current_user.id}}">
+                 <input type="text" class="form-control" name="category name"  placeholder="Category Name" required>
+                        
+              </div>
+
+
+               <div class="form-group">
+                 <label>Category Description:</label>
+                 <input type="text" class="form-control" name="category description"  placeholder="Category Description" required>
+              </div>
+
+               
+              <div class="form-group">
+               <label>Category Type:</label>
+               <select class="form-control" name="category type" required>
+                       <option selected>Category Type</option>
+                       <option value="INFLOW">INFLOW</option>
+                       <option value="OUTFLOW">OUTFLOW</option>
+
+                     </select>       
+
+              </div>
+
+              
+              <div class="form-group">
+
+               
+
+               <label>Parent Category:</label>
+               <select class="form-control" name="parent category" >
+                       <option value=""></option>
+               {% for p in plist %}
+                       <option value={{p[0]}}>{{p[1]}}</option>
+               {% endfor %} 
+               </select>
+
+            </div>
+
+
+
+
+
+
+
+              <div class="form-group">
+
+
+                 <button class="btn btn-primary" type="submit">Add Category</button>
+
+
+              </div>
+
+
+           </form>
+
+
+        </div>
+
+
+        <div class="modal-footer">
+
+
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+        </div>
+
+
+     </div>
+
+
+  </div>
+
+
+</div>
+
+
+
+
+
+       </div>
+
+   </div>
+
+
+</div>
+
+{% endblock body %}

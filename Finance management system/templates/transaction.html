@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Transaction
+{% endblock title %}
+
+
+{% block body %}
+
+
+    <div class="row">
+        <div class="col md-12">
+ 
+            <div class="jumbotron p-3">
+ 
+                <h2><b>Transaction</b>  <button type="button"  class="btn btn-primary float-right"
+                data-toggle="modal" data-target="#mymodal">Add Transactions</button> </h2>
+ 
+ 
+                
+ 
+                <table class="table table-hover table-dark">
+ 
+                    <tr>
+ 
+                        <th>TransactionID</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Transaction Date</th>
+                        <th>Particulars</th>
+                        <th>Created On</th>
+                        <th>Modified On</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+ 
+ 
+                    {% for post in query %}
+                    <tr>
+                        <th scope="row">{{post.transid}}</th>
+                        <td>{{post.catname}}</th>
+                        <td>{{post.amount}}</td>
+                        <td>{{post.transdate}}</td>
+                        <td>{{post.particulars}}</td>
+                        <td>{{post.createdon}}</td>
+                        <td>{{post.modifiedon}}</td>
+
+                        
+ 
+                        <td><a href="/tedit/{{post.transid}}"> <button class="btn btn-warning ">Edit</button></a></td>
+                        <td><a href="/tdelete/{{post.transid}}"><button class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete </button> </a> </td>
+                    </tr>
+             
+ 
+                  
+ 
+ 
+                   {% endfor %}   
+ 
+ 
+                </table>
+ 
+ 
+            </div>
+ 
+ 
+ 
+                  
+ 
+ 
+ <div id="mymodal" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+ 
+            <h4 class="modal-title">Add Transaction</h4>
+         </div>
+         <div class="modal-body">
+ 
+            <form action="{{url_for('tselect')}}" method="POST">
+
+               <div class="form-group">
+                 <label>Transaction Date:</label>
+                 <input type="hidden"  id="userid" name="userid" value="{{current_user.id}}">
+                 <input type="date" class="form-control" name="transaction date" placeholder="date" required>
+               </div>
+
+               
+               <div class="form-group">
+                  <label>Category:</label>
+                  <select class="form-control" name="catname" required>
+                     <option selected>Choose category</option>
+                  {% for c in clist %}
+                     <option value={{c[0]}}>{{c[1]}}</option>
+                  {% endfor %} 
+                  </select>
+
+               </div>
+  
+               
+
+             
+
+
+              
+            
+
+               
+
+ 
+                     
+             <div class="form-group">
+                   <div class="row">
+                       <div class="col-lg-6">
+                          <label>Particulars:</label>
+                           <input type="text" class="form-control" name="particulars" placeholder="particulars"  required>
+                       </div>
+
+
+                
+                       <div class="form-group">
+                              <div class="col-lg-6">
+                                 <label>Amount:</label>
+                                 <input type="text" class="form-control" name="amount"  placeholder="Amount" required>
+                              </div>
+                           </div>
+                     </div>     
+                </div>     
+               
+               
+
+
+ 
+
+                
+               <div class="form-group">
+                  <label>Vendor:</label>
+                  <select class="form-control" name="vendor id"  required>
+                     <option selected>Choose Vendor</option>
+                  {% for v in vlist %}
+                     <option value={{v[0]}}>{{v[1]}}</option>
+                  {% endfor %} 
+                  </select>
+
+               </div>
+
+
+
+
+               <div class="form-group">
+                  <label>payment:</label>
+                  <select class="form-control" name="payment id" required>
+                     <option selected>Choose payments</option>
+                  {% for m in mlist %}
+                     <option value={{m[0]}}>{{m[1]}}</option>
+                  {% endfor %} 
+                  </select>
+
+               </div>
+  
+  
+               
+               <div class="form-group">
+                <label>Transaction Details:</label>
+                <textarea class="form-control" name="transaction details"  placeholder="Transaction Details" required></textarea>
+               </div>
+
+
+
+           
+              <div class="form-group">
+                <label>Remarks:</label>
+                <textarea class="form-control" name="remarks"  placeholder="Remarks" required></textarea>
+             </div>
+
+
+
+             
+ 
+ 
+ 
+ 
+               <div class="form-group">
+ 
+ 
+                  <button class="btn btn-primary" type="submit">Add Transaction</button>
+ 
+ 
+               </div>
+ 
+ 
+            </form>
+ 
+ 
+         </div>
+
+       
+    
+ 
+ 
+         <div class="modal-footer">
+ 
+ 
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+ 
+ 
+         </div>
+ 
+ 
+      </div>
+ 
+ 
+   </div>
+ 
+ 
+ </div>
+ 
+ 
+ 
+ 
+ 
+        </div>
+ 
+    </div>
+ 
+ 
+ </div>
+{% endblock body %}

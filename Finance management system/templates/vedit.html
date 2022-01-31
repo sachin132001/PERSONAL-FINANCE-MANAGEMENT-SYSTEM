@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Update Vendor
+{% endblock title %}
+
+{% block body %}
+
+<div class="row">
+
+<div class="col-md-4">
+</div>
+
+<div class="col-md-4">
+
+
+<h4 class ="text-center bg-danger text-white">Update Your Vendor List</h4>
+
+
+             <form action="/vedit/{{posts.venid}}" method="post" class="jumbotron">
+
+  
+  
+  
+                <div class="form-group">
+  
+                   <label>Vendor Name:</label>
+                   <input type="hidden"  id="userid" name="userid" value="{{current_user.id}}">
+                   <input type="text" class="form-control" id="venname" name="vendor name"  value="{{posts.venname}}" required>
+                   
+                                     
+                   
+                          
+  
+                </div>
+  
+  
+  
+                <div class="form-group">
+  
+  
+                   <label>Vendor Location:</label>
+  
+                   <input type="text" class="form-control" id="venloc" name="vendor location" value="{{posts.venloc}}">
+                                    
+                </div>
+
+
+                
+              
+  
+  
+  
+                <div class="form-group">
+  
+  
+                   <button class="btn btn-primary" type="submit">Update</button>
+  
+  
+                </div>
+               
+  
+             </form>
+  
+  
+          </div>
+  
+  
+          
+  
+  
+       </div>
+  
+  
+    </div>
+  
+  </div>
+  
+</div>
+<div class="col-md-4"></div>
+</div>
+
+
+{% endblock body %}

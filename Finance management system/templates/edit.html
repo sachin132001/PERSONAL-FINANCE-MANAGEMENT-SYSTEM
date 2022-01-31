@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Payments
+{% endblock title %}
+
+{% block body %}
+
+<div class="row">
+
+<div class="col-md-4">
+</div>
+
+<div class="col-md-4">
+
+
+<h4 class ="text-center bg-danger text-white">Update Your Payment</h4>
+
+
+             <form action="/edit/{{posts.paymentid}}>" method="post" class="jumbotron">
+
+
+               
+               
+  
+                <div class="form-group">
+  
+                   <label>Payment Type:</label>
+                   <input type="hidden"  id="userid" name="userid" value="{{current_user.id}}">
+                   <select class="form-control" id="paymenttype" name="payment type" value="{{posts.paymenttype}}">
+                                     <option selected>{{posts.paymenttype}}</option>
+                                     <option value="CASH">CASH</option>
+                                     <option value="DEBIT CARD">DEBIT CARD</option>
+                                     <option value="CREDIT CARD">CREDIT CARD</option>
+                                     <option value="NETBANKING">NETBANKING</option>
+                                     <option value="WALLET/UPI">WALLET/UPI</option>
+                                     <option value="CHEQUE">CHEQUE</option>
+                                     <option value="CRYPTO">CRYPTO</option>
+                   
+                        </select>       
+  
+                </div>
+  
+  
+  
+                <div class="form-group">
+  
+  
+                   <label>Payment Mode:</label>
+  
+                   <select class="form-control" id="paymentmode" name="payment mode" value="{{posts.paymentmode}}">
+                                     <option selected>{{posts.paymentmode}}</option>
+                                     <option value="RUPEE">RUPEE</option>
+                                     <option value="DEBIT CARD-HDFC">DEBIT CARD-HDFC</option>
+                                     <option value="DEBIT CARD-SBI">DEBIT CARD-SBI</option>
+                                     <option value="CREDIT CARD-HDFC">CREDIT CARD-HDFC</option>
+                                     <option value="CREDIT CARD-SBI">CREDIT CARD-SBI</option>
+                                     <option value="PAYTM WALLET">PAYTM WALLET</option>
+                                     <option value="GPAY">GPAY</option>
+                                     <option value="PHONE PAY">PHONE PAY</option>
+                                     <option value="HDFC-ITPB">HDFC-ITPB</option>
+                                     <option value="HDFC-SADASHIVA NAGAR">HDFC-SADASHIVA NAGAR</option>
+                                     <option value="SBI-AECS LAYOUT">SBI-AECS LAYOUT</option>
+                                     <option value="BITCOIN">BITCOIN</option>
+                                     <option value="SBI CHECKBOOK">SBI CHECKBOOK</option>
+                                     <option value="AIRTEL MONEY">AIRTEL MONEY</option>
+                   
+                           </select>     
+  
+                </div>
+  
+  
+                <div class="form-group">
+  
+  
+                   <label>Payment Description:</label>
+  
+                   <input type="text" class="form-control" id="paymentdescription" name="payment description" value="{{posts.paymentdescription}}">
+  
+  
+                </div>
+  
+  
+                <div class="form-group">
+  
+  
+                   <button class="btn btn-primary" type="submit">Update</button>
+  
+  
+                </div>
+               
+  
+             </form>
+  
+  
+          </div>
+  
+  
+          
+  
+  
+       </div>
+  
+  
+    </div>
+  
+  </div>
+  
+</div>
+<div class="col-md-4"></div>
+</div>
+
+
+{% endblock body %}

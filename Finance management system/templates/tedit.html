@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Update Transaction
+{% endblock title %}
+
+{% block body %}
+
+<div class="row">
+
+<div class="col-md-4">
+</div>
+   
+<div class="col-md-4">
+   
+   
+<h4 class ="text-center bg-danger text-white">Update Your Transaction</h4>
+<br>
+ 
+            <form action="/tedit/{{posts.transid}}" method="post" class="jumbotron">
+
+               <div class="form-group">
+                 <label>Transaction Date:</label>
+                 <input type="hidden"  id="userid" name="userid" value="{{current_user.id}}">
+                 <input type="date" class="form-control" id="transdate" name="transaction date" value="{{posts.transdate}}" required>
+               </div>
+
+               <div class="form-group">
+                  <label>Category:</label>
+                  <select class="form-control" id="catname" name="catname"   required>                     
+                  {% for c in clist %}
+                     <option value={{c[0]}}>{{c[1]}}</option>
+                  {% endfor %} 
+                  </select>
+
+               </div>
+
+
+
+               
+
+                  
+             
+
+              
+            
+
+               
+
+ 
+                     
+             <div class="form-group">
+                   <div class="row">
+                       <div class="col-lg-6">
+                          <label>Particulars:</label>
+                           <input type="text" class="form-control"  id="particulars" name="particulars" value="{{posts.particulars}}"  required>
+                       </div>
+
+
+                
+                         
+                              <div class="col-lg-6">
+                                 <label>Amount:</label>
+                                 <input type="text" class="form-control" id="amount" name="amount"  value="{{posts.amount}}" required>
+                              </div>
+                         
+                     </div>     
+                </div>     
+               
+               
+
+
+ 
+
+                
+               <div class="form-group">
+                  <label>Vendor:</label>
+                  <select class="form-control" id="venid" name="vendor id" required>                     
+                  {% for v in vlist %}                                       
+                     <option value={{v[0]}}>{{v[1]}}</option>
+                  {% endfor %} 
+                  </select>
+
+               </div>
+
+
+
+
+               <div class="form-group">
+                  <label>payment:</label>
+                  <select class="form-control" id="paymentid" name="payment id"   required>                     
+                  {% for m in mlist %}
+                     <option value={{m[0]}}>{{m[1]}}</option>
+                  {% endfor %} 
+                  </select>
+
+               </div>
+  
+  
+               
+               <div class="form-group">
+                <label>Transaction Details:</label>
+                <textarea class="form-control"  id="transdetails" name="transaction details"  required>{{posts.transdetails}}</textarea>
+               </div>
+
+
+
+           
+              <div class="form-group">
+                <label>Remarks:</label>
+                <textarea class="form-control"  id="remarks" name="remarks"  required>{{posts.remarks}}</textarea>
+             </div>
+
+
+
+             
+ 
+ 
+ 
+ 
+             <div class="form-group">
+  
+  
+               <button class="btn btn-primary" type="submit">Update</button>
+
+
+             </div>
+             
+         </form>
+
+
+      </div>
+
+
+      
+
+
+   </div>
+
+
+</div>
+
+</div>
+
+</div>
+<div class="col-md-4"></div>
+</div>
+
+
+<script>   
+   var catid_select = {{posts.catid}};
+   selectobject = document.getElementById("catname");
+   for (i=0;i < selectobject.length;i++ )
+   {
+         if(selectobject.options[i].value == catid_select)
+            {
+               
+               selectobject.options[i].selected = true;
+               break;
+            }
+   }
+
+   var VendorId = {{posts.venid}};
+   var selectobject = document.getElementById("venid");
+   for (i=0;i < selectobject.length;i++ )
+   {
+         if(selectobject.options[i].value == VendorId)
+            {
+               
+               selectobject.options[i].selected = true;
+               break;
+            }
+   }
+
+   var PaymentId = {{posts.paymentid}};
+   selectobject = document.getElementById("paymentid");
+   for (i=0;i < selectobject.length;i++ )
+   {
+         if(selectobject.options[i].value == PaymentId)
+            {
+               
+               selectobject.options[i].selected = true;
+               break;
+            }
+   }
+
+  
+</script>
+
+
+{% endblock body %}

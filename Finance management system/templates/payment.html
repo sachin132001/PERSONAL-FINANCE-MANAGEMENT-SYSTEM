@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Payment
+{% endblock title %}
+
+
+{% block body %}
+
+<div class="container">
+   <div class="row">
+       <div class="col md-12">
+
+           <div class="jumbotron p-3">
+
+               <h2>Manage <b>Payments </b>  <button type="button"  class="btn btn-primary float-right"
+               data-toggle="modal" data-target="#mymodal">Add New Payment</button> </h2>
+
+
+               
+
+               <table class="table table-hover table-dark">
+
+                   <tr>
+
+                       <th>PaymentID</th>
+                       <th>Payment Type</th>
+                       <th>Payment Mode</th>
+                       <th>Payment Description</th>
+                       <th>Edit</th>
+                       <th>Delete</th>
+                   </tr>
+
+
+                  {% for post in query %}
+                   <tr>
+                       <th scope="row">{{post.paymentid}}</th>
+                       <td>{{post.paymenttype}}</td>
+                       <td>{{post.paymentmode}}</td>
+                       <td>{{post.paymentdescription}}</td>
+                       
+
+                       <td><a href="/edit/{{post.paymentid}}"> <button class="btn btn-warning ">Edit</button></a></td>
+                       <td><a href="/delete/{{post.paymentid}}"><button class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete </button> </a> </td>
+                   </tr>
+            
+
+                 
+
+
+                  {% endfor %}   
+
+
+               </table>
+
+
+           </div>
+
+
+
+                 
+
+
+<div id="mymodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+     <div class="modal-content">
+        <div class="modal-header">
+
+           <h4 class="modal-title">Add Payment</h4>
+        </div>
+        <div class="modal-body">
+
+           <form action="{{url_for('insert')}}" method="POST">
+
+
+              <div class="form-group">
+                 <label>Payment Type:</label>
+                 <input type="hidden"  id="userid" name="userid" value="{{current_user.id}}">
+                 <select class="form-control" name="payment type" required>
+                         <option selected>Payment Type</option>
+                         <option value="CASH">CASH</option>
+                         <option value="DEBIT CARD">DEBIT CARD</option>
+                         <option value="CREDIT CARD">CREDIT CARD</option>
+                         <option value="NETBANKING">NETBANKING</option>
+                         <option value="WALLET/UPI">WALLET/UPI</option>
+                         <option value="CHEQUE">CHEQUE</option>
+                         <option value="CRYPTO">CRYPTO</option>
+                         
+                     </select>       
+
+              </div>
+
+
+               <div class="form-group">
+
+
+                 <label>Payment Mode:</label>
+                 <select class="form-control" name="payment mode" required>
+                        <option selected>Payment Mode</option>
+                        <option value="RUPEE">RUPEE</option>
+                        <option value="DEBIT CARD-HDFC">DEBIT CARD-HDFC</option>
+                        <option value="DEBIT CARD-SBI">DEBIT CARD-SBI</option>
+                        <option value="CREDIT CARD-HDFC">CREDIT CARD-HDFC</option>
+                        <option value="CREDIT CARD-SBI">CREDIT CARD-SBI</option>
+                        <option value="PAYTM WALLET">PAYTM WALLET</option>
+                        <option value="GPAY">GPAY</option>
+                        <option value="PHONE PAY">PHONE PAY</option>
+                        <option value="HDFC-ITPB">HDFC-ITPB</option>
+                        <option value="HDFC-SADASHIVA NAGAR">HDFC-SADASHIVA NAGAR/option>
+                        <option value="SBI-AECS LAYOUT">SBI-AECS LAYOUT</option>
+                        <option value="BITCOIN">BITCOIN</option>
+                        <option value="SBI CHECKBOOK">SBI CHECKBOOK</option>
+                        <option value="AIRTEL MONEY">AIRTEL MONEY</option>
+                        
+                    </select>       
+                            
+
+              </div>
+
+
+               <div class="form-group">
+
+
+                 <label>Payment Description:</label>
+                 <input type="text" class="form-control" name="payment description" placeholder="Payment description" required="1">
+
+
+              </div>
+
+
+
+              <div class="form-group">
+
+
+                 <button class="btn btn-primary" type="submit">Add Payment</button>
+
+
+              </div>
+
+
+           </form>
+
+
+        </div>
+
+
+        <div class="modal-footer">
+
+
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+        </div>
+
+
+     </div>
+
+
+  </div>
+
+
+</div>
+
+
+
+
+
+       </div>
+
+   </div>
+
+
+</div>
+{% endblock body %}

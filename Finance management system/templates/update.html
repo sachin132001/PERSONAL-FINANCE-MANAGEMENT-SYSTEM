@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Update Category
+{% endblock title %}
+
+{% block body %}
+
+<div class="row">
+
+<div class="col-md-4">
+</div>
+
+<div class="col-md-4">
+
+
+<h4 class ="text-center bg-danger text-white">Update Your Category</h4>
+
+
+            <form action="/update/{{posts.catid}}" method="post" class="jumbotron">
+
+  
+  
+  
+                <div class="form-group">
+  
+                   <label>Category Name:</label>
+                   <input type="hidden"  id="userid" name="userid" value="{{current_user.id}}">
+                   <input type="text" class="form-control" id="catname" name="category name" value="{{posts.catname}}">
+                </div>                 
+
+
+                <div class="form-group">
+  
+  
+                   <label>Category Description:</label>
+  
+                   <input type="text" class="form-control" id="catdesc" name="category description" value="{{posts.catdesc}}">
+                                    
+                </div>
+
+                   
+              <div class="form-group">
+               <label>Category Type:</label>
+               <select class="form-control" name="category type" value="{{posts.cattype}}" required>
+                       <option selected>{{posts.cattype}}</option>
+                       <option value="INFLOW">INFLOW</option>
+                       <option value="OUTFLOW">OUTFLOW</option>
+
+                     </select>       
+
+              </div>
+
+
+              
+              <div class="form-group">
+                   <label>Parent Category:</label>
+                   <select class="form-control" id="pcat" name="parent category"  >
+                         <option value=""></option>
+                     {% for p in plist %}
+                 
+                        <option value={{p[0]}}>{{p[1]}}</option>
+                      
+                      {% endfor %} 
+                     </select>
+               </div>
+               
+  
+  
+               <div class="form-group">
+  
+  
+                   <button class="btn btn-primary" type="submit">Update</button>
+  
+  
+               </div>
+
+
+              
+            </form>
+  
+  
+          </div>
+  
+  
+          
+  
+  
+       </div>
+  
+  
+    </div>
+  
+  </div>
+  
+</div>
+<div class="col-md-4"></div>
+</div>
+
+
+<script>   
+   var catid_select = {{posts.catparentid}};
+   selectobject = document.getElementById("pcat");
+   for (i=0;i < selectobject.length;i++ )
+   {
+         if(selectobject.options[i].value == catid_select)
+            {
+               
+               selectobject.options[i].selected = true;
+               break;
+            }
+   }
+</script>
+
+{% endblock body %}
